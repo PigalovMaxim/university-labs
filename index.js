@@ -8,18 +8,50 @@ const firstLabFillDefault = document.getElementById('firstLabFillDefault');
 const firstLabEncriptText = document.getElementById('firstLabEncriptText');
 const firstLabDecriptText = document.getElementById('firstLabDecriptText');
 const firstLabDecipherText = document.getElementById('firstLabDecipherText');
+// Элементы второй лабы
+const secondLabNavButton = document.getElementById('secondLab');
+const secondLabContentDiv = document.getElementById('secondLabContent');
+const secondLabInputText = document.getElementById('secondLabText');
+const secondLabInputKey = document.getElementById('secondLabKey');
+const secondLabStart = document.getElementById('secondLabStart');
+const secondLabFillDefault = document.getElementById('secondLabFillDefault');
+const secondLabEncriptText = document.getElementById('secondLabEncriptText');
+const secondLabDecriptText = document.getElementById('secondLabDecriptText');
 
 class Labs {
   static #alphabet = 'abcdefghijklmnopqrstuvwxyz';
   static #uppercaseAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  static #secondLabAlphabetMatrix = [];
 
   static closeAll = () => {
+    const divs = [firstLabContentDiv, secondLabContentDiv];
+    divs.forEach(div => {
+      div.classList.add('hidden');
+    });
 
+    const btns = [firstLabNavButton, secondLabNavButton];
+    btns.forEach(btn => {
+      btn.classList.remove('activeMenu');
+    });
   }
+
+  static generateDataForLabs = () => {
+    const result = [];
+
+    for (let i = 0; i < this.#alphabet.length; i++) {
+      const row = this.#alphabet.slice(i) + this.#alphabet.slice(0, i);
+      result.push(row.split(''));
+    }
+
+    this.#secondLabAlphabetMatrix = result;
+  }
+
+  // Первая лаба
 
   static chooseFirstLab = () => {
     this.closeAll();
     firstLabContentDiv.classList.remove('hidden');
+    firstLabNavButton.classList.add('activeMenu');
   }
 
   static firstLabStart = (text, shift) => {
@@ -118,7 +150,76 @@ class Labs {
 
     return shiftedLetter;
   }
+
+  // Вторая лаба
+
+  static chooseSecondLab = () => {
+    this.closeAll();
+    secondLabContentDiv.classList.remove('hidden');
+    secondLabNavButton.classList.add('activeMenu');
+  }
+
+  static secondLabStart = (text, key) => {
+    text = text.toLowerCase();
+    key = key.toLowerCase();
+    // шифровка
+    const halfEncripted = this.#secondLabFillKey(text, key);
+    const encripted = this.#secondLabChangeLettersByAlphabet(halfEncripted, text, false);
+
+    // расшифровка
+    const halfDecripted = this.#secondLabFillKey(encripted, key);
+    const decripted = this.#secondLabChangeLettersByAlphabet(halfDecripted, encripted, true);
+
+    return { encripted, decripted };
+  }
+
+  static #secondLabFillKey = (text, key) => {
+    const letters = text.split('');
+
+    let halfEncripted = '';
+    let currentKeyIndex = 0;
+    for (const letter of letters) {
+      if (this.#alphabet.includes(letter)) {
+        if (currentKeyIndex === key.length) currentKeyIndex = 0;
+        halfEncripted += key[currentKeyIndex];
+        currentKeyIndex++;
+        continue;
+      }
+      halfEncripted += letter;
+    }
+    return halfEncripted;
+  }
+
+  static #secondLabChangeLettersByAlphabet = (halfEncripted, text, reverse) => {
+    let encripted = '';
+    for (let i = 0; i < halfEncripted.length; i++) {
+      const halfEncriptedLetter = halfEncripted[i];
+      if (!this.#alphabet.includes(halfEncriptedLetter)) {
+        encripted += halfEncriptedLetter;
+        continue;
+      }
+      for (const encriptedAlphaber of this.#secondLabAlphabetMatrix) {
+        if (encriptedAlphaber[0] !== halfEncriptedLetter) continue;
+        const startLetter = text[i];
+        let encriptedLetter = '';
+        if (reverse) {
+          const startLetterEncriptedAlphaberIndex = encriptedAlphaber.indexOf(startLetter);
+          encriptedLetter = this.#alphabet[startLetterEncriptedAlphaberIndex];
+        } else {
+          const startLetterEncriptedAlphaberIndex = this.#alphabet.indexOf(startLetter);
+          encriptedLetter = encriptedAlphaber[startLetterEncriptedAlphaberIndex];
+        }
+        encripted += encriptedLetter;
+      }
+    }
+
+    return encripted;
+  }
 }
+
+Labs.generateDataForLabs();
+
+// Первая лаба
 
 firstLabNavButton.addEventListener('click', () => {
   Labs.chooseFirstLab();
@@ -152,4 +253,31 @@ firstLabInputKey.addEventListener('input', function () {
 
 firstLabInputText.addEventListener('input', function () {
   firstLabInputText.value = firstLabInputText.value.replace(/[^a-zA-Z\s,.\-]/g, '');
+});
+
+// Вторая лаба
+
+secondLabInputKey.addEventListener('input', function () {
+  secondLabInputKey.value = secondLabInputKey.value.replace(/[^a-zA-Z\s,.\-]/g, '');
+});
+
+secondLabStart.addEventListener('click', () => {
+  const textValue = secondLabInputText.value;
+  const keyValue = secondLabInputKey.value;
+  const { encripted, decripted } = Labs.secondLabStart(textValue, keyValue);
+  secondLabEncriptText.innerHTML = encripted;
+  secondLabDecriptText.innerHTML = decripted;
+});
+
+secondLabInputText.addEventListener('input', function () {
+  secondLabInputText.value = secondLabInputText.value.replace(/[^a-zA-Z\s,.\-]/g, '');
+});
+
+secondLabNavButton.addEventListener('click', () => {
+  Labs.chooseSecondLab();
+});
+
+secondLabFillDefault.addEventListener('click', () => {
+  secondLabInputText.value = 'hello world';
+  secondLabInputKey.value = 'ass';
 });

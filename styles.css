@@ -41,11 +41,20 @@ nav button {
   transition: background-color 0.5s ease-in-out;
 }
 
+nav .activeMenu {
+  background-color: rgb(233, 84, 84);
+  color: white;
+}
+
+nav .activeMenu:hover {
+  background-color: rgb(192, 61, 61);
+}
+
 nav button:hover {
   background-color: rgb(204, 204, 204);
 }
 
-#firstLabContent {
+#firstLabContent, #secondLabContent {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -53,7 +62,7 @@ nav button:hover {
   overflow-y: auto;
 }
 
-#firstLabContent input {
+#firstLabContent input, #secondLabContent input {
   width: 600px;
   min-height: 35px;
   height: 35px;
@@ -64,7 +73,7 @@ nav button:hover {
   margin-bottom: 20px;
 }
 
-#firstLabContent button {
+#firstLabContent button, #secondLabContent button {
   width: 200px;
   min-height: 35px;
   height: 35px;
@@ -77,15 +86,15 @@ nav button:hover {
   margin-bottom: 20px;
 }
 
-#firstLabContent #firstLabFillDefault {
+#firstLabContent #firstLabFillDefault, #secondLabContent #secondLabFillDefault {
   width: 300px;
 }
 
-#firstLabContent button:hover {
+#firstLabContent button:hover, #secondLabContent button:hover {
   background-color: rgb(231, 96, 87);
 }
 
-#firstLabContent h1 {
+#firstLabContent h1, #secondLabContent h1 {
   margin-bottom: 10px;
 }
 

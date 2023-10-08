@@ -10,11 +10,12 @@
 
 <body>
   <nav>
-    <button id="firstLab">Первая лаба</button>
+    <button id="firstLab" class="activeMenu">Первая лаба</button>
+    <button id="secondLab">Вторая лаба</button>
   </nav>
   <main>
     <div id="firstLabContent">
-      <input id="firstLabText" placeholder="Введите текст" />
+      <input id="firstLabText" placeholder="Введите текст (английский)" />
       <input id="firstLabKey" placeholder="Введите ключ (число)" />
       <button id="firstLabStart">Выполнить</button>
       <button id="firstLabFillDefault">Заполнить тестовыми данными</button>
@@ -28,6 +29,20 @@
       </h3>
       <h1>Расшифровка</h1>
       <h3 id="firstLabDecipherText">
+        Введите данные для результата
+      </h3>
+    </div>
+    <div id="secondLabContent">
+      <input id="secondLabText" placeholder="Введите текст (английский)" />
+      <input id="secondLabKey" placeholder="Введите ключ (английский)" />
+      <button id="secondLabStart">Выполнить</button>
+      <button id="secondLabFillDefault">Заполнить тестовыми данными</button>
+      <h1>Зашифрованный текст</h1>
+      <h3 id="secondLabEncriptText">
+        Введите данные для результата
+      </h3>
+      <h1>Расшифрованный текст</h1>
+      <h3 id="secondLabDecriptText">
         Введите данные для результата
       </h3>
     </div>
