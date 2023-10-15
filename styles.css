@@ -54,7 +54,7 @@ nav button:hover {
   background-color: rgb(204, 204, 204);
 }
 
-#firstLabContent, #secondLabContent {
+.content {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -62,7 +62,7 @@ nav button:hover {
   overflow-y: auto;
 }
 
-#firstLabContent input, #secondLabContent input {
+input {
   width: 600px;
   min-height: 35px;
   height: 35px;
@@ -73,7 +73,7 @@ nav button:hover {
   margin-bottom: 20px;
 }
 
-#firstLabContent button, #secondLabContent button {
+.content button {
   width: 200px;
   min-height: 35px;
   height: 35px;
@@ -86,22 +86,22 @@ nav button:hover {
   margin-bottom: 20px;
 }
 
-#firstLabContent #firstLabFillDefault, #secondLabContent #secondLabFillDefault {
+.fillButton {
   width: 300px;
 }
 
-#firstLabContent button:hover, #secondLabContent button:hover {
+button:hover {
   background-color: rgb(231, 96, 87);
 }
 
-#firstLabContent h1, #secondLabContent h1 {
+h1 {
   margin-bottom: 10px;
 }
 
-#firstLabContent h3 p {
+h3 p {
   color: rgb(255, 92, 92);
 }
 
-#firstLabContent h3 .right {
+h3 .right {
   color: rgb(41, 206, 49);
 }
