@@ -26,6 +26,15 @@ const thirdLabStartButton = document.getElementById('thirdLabStart');
 const thirdLabFillDefault = document.getElementById('thirdLabFillDefault');
 const thirdLabEncriptText = document.getElementById('thirdLabEncriptText');
 const thirdLabDecriptText = document.getElementById('thirdLabDecriptText');
+// Элементы четвёртой лабы
+const fourthLabNavButton = document.getElementById('fourthLab');
+const fourthLabContentDiv = document.getElementById('fourthLabContent');
+const fourthLabInputText = document.getElementById('fourthLabText');
+const fourthLabInputKey = document.getElementById('fourthLabKey');
+const fourthLabStartButton = document.getElementById('fourthLabStart');
+const fourthLabFillDefault = document.getElementById('fourthLabFillDefault');
+const fourthLabEncriptText = document.getElementById('fourthLabEncriptText');
+const fourthLabDecriptText = document.getElementById('fourthLabDecriptText');
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const uppercaseAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

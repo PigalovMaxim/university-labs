@@ -13,6 +13,7 @@
     <button id="firstLab" class="activeMenu">Первая лаба</button>
     <button id="secondLab">Вторая лаба</button>
     <button id="thirdLab">Третья лаба</button>
+    <button id="fourthLab">Четвёртая лаба</button>
   </nav>
   <main>
     <div class="content" id="firstLabContent">
@@ -61,11 +62,26 @@
         Введите данные для результата
       </h3>
     </div>
+    <div class="content" id="fourthLabContent">
+      <input id="fourthLabText" placeholder="Введите текст (английский)" />
+      <input id="fourthLabKey" placeholder="Введите ключ (английский)" />
+      <button id="fourthLabStart">Выполнить</button>
+      <button class="fillButton" id="fourthLabFillDefault">Заполнить тестовыми данными</button>
+      <h1>Зашифрованный текст</h1>
+      <h3 id="fourthLabEncriptText">
+        Введите данные для результата
+      </h3>
+      <h1>Расшифрованный текст</h1>
+      <h3 id="fourthLabDecriptText">
+        Введите данные для результата
+      </h3>
+    </div>
   </main>
   <script src="index.js"></script>
   <script src="js/firstLab.js"></script>
   <script src="js/secondLab.js"></script>
   <script src="js/DES.js"></script>
   <script src="js/thirdLab.js"></script>
+  <script src="js/fourthLab.js"></script>
 </body>
 </html>
